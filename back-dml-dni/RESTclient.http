@@ -1,0 +1,59 @@
+###
+# GET ALL CLIENTS
+GET http://localhost:3000/
+###
+# GET ONE CLIEN BY ID
+GET http://localhost:3000/95d0658f-9cfd-47be-b6d9-e92b01f89587
+###
+
+###
+# POST new form
+POST http://localhost:3000/
+Content-Type: application/json
+
+
+{
+    "formName": "3",
+    "description": "Segundo",
+    "formData":{
+
+
+    }
+}
+###
+
+###
+# POST create table
+POST http://localhost:3000/createTableForms
+Content-Type: application/json
+
+{
+    "dni": "53702804n"
+}
+###
+
+###
+# DELETE form by id
+DELETE   http://localhost:3000/6cb12cd8-331b-477e-8f7b-ce69ff21f4ca
+Content-Type: application/json
+
+
+###
+
+###
+# PUT update form by id
+PUT http://localhost:3000/93ae0d72-fbc8-4294-9f0e-d23296db34a8
+Content-Type: application/json
+
+{
+
+    "formdata": {
+        "1":"nombre"
+    }
+}
+###
+
+###
+###
+
+###
