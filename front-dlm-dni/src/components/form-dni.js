@@ -77,7 +77,7 @@ export class FormDni extends LitElement {
     .then((response) => response.json())
     .then((data) => {
       setTimeout(() => {
-        this._dispatchItems(data);
+        this._dispatchItems();
       }, 1000);
     })
     .catch((error) => {

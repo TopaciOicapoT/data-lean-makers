@@ -42,14 +42,14 @@ Content-Type: application/json
 
 ###
 # PUT update form by id
-PUT http://localhost:3000/93ae0d72-fbc8-4294-9f0e-d23296db34a8
+PUT http://localhost:3000/3b9cb414-b222-4a68-b09c-2afad9c2d845
 Content-Type: application/json
 
 {
 
-    "formdata": {
-        "1":"nombre"
-    }
+    "description": "Almacen trasero delantero"
+        
+    
 }
 ###
 

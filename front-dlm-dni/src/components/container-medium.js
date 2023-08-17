@@ -5,25 +5,25 @@ export class ContainerMedium extends LitElement {
     createRenderRoot() {
         return this;
     }
-    static get properties(){
-        return{
-            renderListItems: {type: String},
-            
-            
+    static get properties() {
+        return {
+            renderListItems: { type: String },
+
+
         }
     }
-    constructor(){
+    constructor() {
         super()
-        this.renderListItems= "";
+        this.renderListItems = "";
     }
 
-    firstUpdated(){
-        this.addEventListener('setItems',this.setItems)
+    firstUpdated() {
+        this.addEventListener('setItems', this.setItems)
     }
 
-    setItems(e){
+    setItems(e) {
 
-        this.renderListItems=e.detail.items
+        this.renderListItems = e.detail.items
     }
 
     render() {
@@ -35,6 +35,9 @@ export class ContainerMedium extends LitElement {
         </h1>
 
         <form-dni></form-dni>
+        <div>
+            <h2 class="mt-20 font-serif text-center text-xl bg-gray-50 shadow-lg p-5 shadow-gray-900 rounded-md ">Lista de formularios</h2>
+        </div>
         <form-list renderList="${this.renderListItems}"></form-list>
     </section>
     `;

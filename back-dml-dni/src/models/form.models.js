@@ -16,14 +16,13 @@ const tableExists = async (tableName) => {
 models.createTableForms = async (dni) => {
     try {
         (async () => {
-        
-            const tableName = `forms_${dni.dni}`;
+            const tableName = `forms_${dni}`;
             const exists = await tableExists(tableName);
-        
+            
             if (exists) {
                 return 'error'
             } else {
-                await pool.query(`create table forms_${dni.dni}(Id text, formName text, description text, formData JSONB)`)
+                await pool.query(`create table forms_${dni}(Id text, formName text, description text, formData JSONB)`)
             }
         
         })();

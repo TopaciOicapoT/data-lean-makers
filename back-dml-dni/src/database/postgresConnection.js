@@ -1,13 +1,13 @@
 const { Client, Pool } = require('pg');
 
-
 const connectionData = {
-    user: 'postgres',
-    host: 'localhost',
-    database: 'MYDB',
-    password: 'postgres',
-    port: 54321,
+    host: 'dataleanmakers.com.es',
+    database: 'pg_pruebadlm',
+    user: 'dlm',
+    password: 'dlm2023$',
+    port: 7432,
 };
+
 
 const pool = new Pool(connectionData);
 module.exports = pool;
