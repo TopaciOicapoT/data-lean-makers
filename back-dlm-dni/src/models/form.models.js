@@ -64,6 +64,7 @@ models.createFromBBDD = async (newForm)=>{
     });
     console.log(listValue);
     const text = `INSERT INTO forms_53702804n(Id, formName, description, formData) VALUES($1, $2, $3, $4)`
+    console.log(listValue);
     const res = await pool.query(text, listValue);
     
 }

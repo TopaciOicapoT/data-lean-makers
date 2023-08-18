@@ -13,10 +13,10 @@ Content-Type: application/json
 
 
 {
-    "formName": "3",
+    "formname": "alo",
     "description": "Segundo",
-    "formData":{
-
+    "formdata":{
+        "1":{"name":"User", "type": "text"}
 
     }
 }
