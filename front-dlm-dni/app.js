@@ -1,4 +1,5 @@
 import './src/components/get-data.js'
-import './src/components/form-dni.js'
-import './src/components/form-list.js'
-import './src/components/container-form.js'
+import './src/components/form/form-dni.js'
+import './src/components/forms-list/form-list.js'
+import './src/components/forms-list/inputs-values.js'
+import './src/components/containers/container-form.js'

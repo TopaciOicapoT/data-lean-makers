@@ -11,12 +11,12 @@ app.use(cors(
                 return callback(null, origin)
             }
             return callback(
-                `Error de CORS origin: ${origin} No autorizado!`
+                `Unauthorized CORS error origin: ${origin} error.`
             )
         },
     }));
 app.use(express.json());
 app.use(require('./src/routes/form.route.js'))
 app.listen(port, () => {
-    console.log(`Servidor API escuchando en http://localhost:${port}`);
+    console.log(`Server listen http://localhost:${port}`);
 });

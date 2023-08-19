@@ -1,7 +1,8 @@
 const pool = require('../database/postgresConnection.js')
 const models = {}
 
-const tableExists = async (tableName) => {
+// Check table forms_53702804n data exist
+const tableDniExists = async (tableName) => {
     const query = `
         SELECT EXISTS (
             SELECT 1
@@ -13,16 +14,50 @@ const tableExists = async (tableName) => {
     const result = await pool.query(query, [tableName]);
     return result.rows[0].exists;
 };
-models.createTableForms = async (dni) => {
+// Create table forms_53702804n
+models.createTableForms = async (name) => {
     try {
         (async () => {
-            const tableName = `forms_${dni}`;
-            const exists = await tableExists(tableName);
+            const tableName = `forms_${name}`;
+            const exists = await tableDniExists(tableName);
             
             if (exists) {
                 return 'error'
             } else {
-                await pool.query(`create table forms_${dni}(Id text, formName text, description text, formData JSONB)`)
+                await pool.query(`create table forms_${name}(Id text, formName text, description text, formData JSONB)`)
+            }
+        
+        })();
+   
+    } catch (error) {
+        console.log(error);
+        return "error";
+    }
+}
+// Check table inputs_53702804n exist
+const tableInputsExists = async (tableName) => {
+    const query = `
+    SELECT EXISTS (
+        SELECT 1
+        FROM information_schema.tables
+        WHERE table_name = $1
+        );
+        `;
+        
+        const result = await pool.query(query, [tableName]);
+        return result.rows[0].exists;
+    };
+ // Create table inputs_53702804n
+models.createTableInputs = async () => {
+    try {
+        (async () => {
+            const tableName = 'inputs_53702804n';
+            const exists = await tableInputsExists(tableName);
+            
+            if (exists) {
+                return 'error'
+            } else {
+                await pool.query(`create table ${tableName}(Id text, values JSONB)`)
             }
         
         })();
@@ -35,7 +70,7 @@ models.createTableForms = async (dni) => {
 
 
 
-
+// Find all forms
 models.findForms = async() =>{
     try {
         const res = await pool.query('SELECT * FROM forms_53702804n')
@@ -46,29 +81,49 @@ models.findForms = async() =>{
         return "error don't get  forms";
     }
 }
-
-models.find = ()=>{
+// Find all inputs values
+models.findInputsValues = async() =>{
     try {
-        
+        const res = await pool.query('SELECT * FROM inputs_53702804n')
+        return res.rows;
+
     } catch (error) {
-        
+        console.log(error);
+        return "error don't get data";
     }
 }
-models.createFromBBDD = async (newForm)=>{
-
+// Create new form
+models.createNewForm = async (newForm)=>{
     
     let listValue = [];
     const objectValues= Object.entries(newForm)
     objectValues.forEach(([key, value])=>{
         listValue.push(value)
     });
-    console.log(listValue);
+    
+    console.log(newForm);
     const text = `INSERT INTO forms_53702804n(Id, formName, description, formData) VALUES($1, $2, $3, $4)`
-    console.log(listValue);
+    
     const res = await pool.query(text, listValue);
     
 }
-models.updateFromBBDD = async (formUpdate)=>{
+// Create new inputs Value
+models.createNewInputValue = async (inputValues)=>{
+
+    let listValue = [];
+    const objectValues= Object.entries(inputValues)
+    objectValues.forEach(([key, value])=>{
+        listValue.push(value)
+    });
+    
+    console.log(inputValues);
+    const text = `INSERT INTO inputs_53702804n(Id, values) VALUES($1, $2)`
+
+    const res = await pool.query(text, listValue);
+    
+}
+// Update form
+models.updateForm = async (formUpdate)=>{
     let listValue = [];
     const objectValues= Object.entries(formUpdate)
     objectValues.forEach(([key, value])=>{
@@ -83,7 +138,16 @@ models.deleteFromBBDD = async (formId)=>{
     listValue.push(formId.id)
     const text = 'DELETE FROM forms_53702804n WHERE id = $1'
     
+    console.log(formId.id);
+    const res = await pool.query(text, listValue);
+
+}
+models.deleteRegisterInputs = async (Id)=>{
+    let listValue = [];
+    listValue.push(Id.id)
+    const text = 'DELETE FROM inputs_53702804n WHERE id = $1'
     
+    console.log(Id.id);
     const res = await pool.query(text, listValue);
 
 }

@@ -1,26 +1,26 @@
 # back-dlm-dni
-Back para front-dlm-dni.
+-Backend for front-dlm-dni.
 
-# Herramientas y Tecnologías
-- Node.Js
-- javaScript(ES++)
-- express
-- cors
-- dotenv
+# Tools and Technologies
+- Node.Js v18
+- JavaScript (ES++)
+- Express
+- Cors
+- Dotenv
 - pg
 - zod
-    
-## Descripción y uso
-Este proyecto consiste en un sistema que combina un backend y un frontend para gestionar y utilizar información almacenada en una base de datos. El backend proporciona las APIs y la lógica necesaria para acceder y manipular los datos en la base de datos, mientras que el frontend ofrece una interfaz de usuario para interactuar con esos datos.
 
-En el archivo .env copia y pega el puerto que estas usando en el front-dlm-dni y cópielo en la variable de entorno ORIGIN2= , ahora solo tendrá que arrancar el proyecto con el comando facilitado al final de este documento.
+# Description and Usage
+This project consists of a system that combines a backend and a frontend to manage and utilize information stored in a database. The backend provides APIs and the necessary logic to access and manipulate data in the database, while the frontend offers a user interface to interact with this data.
 
-## Instalación
+In the .env file, copy and paste the port you are using in front-dlm-dni and assign it to the ORIGIN2 environment variable. Now you just need to start the project using the command provided at the end of this document.
 
-1. Clona este repositorio: `git clone https://github.com/TopaciOicapoT/data-lean-makers.git`
-2. Ingresa al directorio del proyecto: `cd back-dlm-dni`
-3. Instala las dependencias: `npm install`
+# Installation
 
-# Comando de entrada y ejecución
-1. `cd cd back-dlm-dni`
+1. Clone this repository: `git clone https://github.com/TopaciOicapoT/data-lean-makers.git`
+2. Enter the project directory: `cd back-dlm-dni`
+3. Install the dependencies: `npm install`
+
+# Entry and Execution Command
+1. `cd back-dlm-dni`
 2. `npm start`

@@ -21,6 +21,7 @@ export class GetData extends LitElement {
             const oldValue = changedProperties.get("rerender");
             const newValue = this.rerender;
             this.getData();
+            
         }
         super.update(changedProperties);
     }

@@ -1,31 +1,30 @@
 # front-dlm-dni
-Generador de formularios con distintos tipos de inputs.
+Form generator with various types of inputs.
 
-# Herramientas y Tecnologías
+# Tools and Technologies
 - HTML5
-- tailwind
-- tailwindcss animated
-- javaScript(ES++)
+- Tailwind
+- Tailwind CSS Animated
+- JavaScript (ES++)
 - Lit.js
-- vite
+- Vite
     
-## Descripción y uso
-Este proyecto consiste en un sistema que combina un backend y un frontend para gestionar y utilizar información almacenada en una base de datos. El backend proporciona las APIs y la lógica necesaria para acceder y manipular los datos en la base de datos, mientras que el frontend ofrece una interfaz de usuario para interactuar con esos datos.
+## Description and Usage
+This project consists of a system that combines a backend and a frontend to manage and utilize information stored in a database. The backend provides APIs and the necessary logic to access and manipulate data in the database, while the frontend offers a user interface to interact with this data.
 
+In the front-dlm-dni user interface, we will generate forms based on a main form. We will need to enter a name for the new form, a description, and choose the inputs it will display along with their respective names and types. Once generated, our form will appear below the main form.
 
-En la interfaz de usuario del front-dlm-dni generaremos formularios a partir de un formulario principal, tendremos que introducir un nombre para el nuevo formulario, una descripción y elegir los inputs que mostrara con sus respectivos nombres y tipos, una vez generado, nuestro formulario aparecerá debajo del formulario principal.
+The forms will be saved in an SQL database, and the necessary table is created automatically for this project. If the table already exists, it will not be duplicated. We will store the form data in this table, which will later appear in a list to which we will pass the data.
 
-Los formularios se guardaran en una base de datos SQL, la tabla necesaria para ello se crea automáticamente para este proyecto, en caso de que la tabla ya este creada no se duplicara, en esta tabla almacenaremos los datos de los formularios que luego aparecerán en una lista a la que le pasaremos los datos. 
+In the list of created forms, we can interact with them and update their names and descriptions. If a form is no longer needed, we simply need to press the delete button.
 
-En la lista de formularios creados podremos interactuar con ellos y actualizar su nombre y descripción, si el formulario ya no es util solo tenemos que pulsar el botón de eliminar.
+## Installation
 
+1. Clone this repository: `git clone https://github.com/TopaciOicapoT/data-lean-makers.git`
+2. Enter the project directory: `cd front-dlm-dni`
+3. Install the dependencies: `npm install`
 
-## Instalación
-
-1. Clona este repositorio: `git clone https://github.com/TopaciOicapoT/data-lean-makers.git`
-2. Ingresa al directorio del proyecto: `cd front-dlm-dni`
-3. Instala las dependencias: `npm install`
-
-# Comando de entrada y ejecución
-1. `cd cd front-dlm-dni`
+# Entry and Execution Command
+1. `cd front-dlm-dni`
 2. `npm run dev`
+3. The service should run on the port http://localhost:5173
