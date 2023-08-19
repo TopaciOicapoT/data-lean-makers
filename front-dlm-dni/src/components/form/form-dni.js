@@ -140,7 +140,7 @@ export class FormDni extends LitElement {
           </div>
           ${this.listAddType.map(key => html`
           <div class="mt-5">
-            <label class="text-gray-700 dark:text-gray-200" for="username"  >Nombre del input: ${key}</label>
+            <label class="text-gray-700 dark:text-gray-200" for="username"  >Nombre de input:</label>
             <input required id="inputName" type="text" .value="${this.inputNames[key]}" @input="${e => (this.inputNames[key] = e.target.value)}" placeholder="Este nombre se mostrara sobre tu input " class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"> 
               <select @change="${this.handleSelectChange}" id="${key}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" >
                 <option id="${crypto.randomUUID()}" value="text">Texto</option>
