@@ -15,9 +15,11 @@ export class ContainerForm extends LitElement {
         this.urlBase = urlBase;
         this.renderListItems = "";
     }
+    // We listen to the `dispatch` event coming from the `form-dni` component.
     firstUpdated() {
         this.addEventListener('setItems', this.setItems)
     }
+    // We send the updated data to the `form-list` component to force its rendering with the updated data.
     setItems(e) {
         this.renderListItems = e.detail.items
     }
@@ -28,7 +30,7 @@ export class ContainerForm extends LitElement {
             Generador de formularios Data Lean Maker
         </h1>
         <form-dni urlBase="${this.urlBase}"></form-dni>
-        <form-list urlBase="${this.urlBase}" renderList="${this.renderListItems}"></form-list>
+        <form-list urlBase="${this.urlBase}" .renderList="${this.renderListItems}"></form-list>
     </section>
     `;
     }

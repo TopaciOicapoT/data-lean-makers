@@ -5,13 +5,13 @@ export class FormList extends LitElement {
     }
     static get properties() {
         return {
-            show:{type:Boolean},
+            show: { type: Boolean },
             idForm: { type: String },
             urlBase: { type: String },
             listItems: { type: Array },
-            inputsApiData:{type:Array},
+            inputsApiData: { type: Array },
             singleForm: { type: Array },
-            inputListValue:{type:Array},
+            inputListValue: { type: Array },
             renderList: { type: String },
             formDataList: { type: Array },
         }
@@ -23,21 +23,22 @@ export class FormList extends LitElement {
     `;
     constructor() {
         super();
-        this.show= false;
+        this.show = false;
         this.idForm = "";
         this.urlBase = "";
         this.listItems = [];
         this.singleForm = [];
         this.renderList = "";
-        this.inputsApiData=[];
+        this.inputsApiData = [];
         this.formDataList = [];
         this.inputListValue = {};
     }
-    // We listen to the event coming from the "get data" component and send the data to "data format" to format and use it as needed.
+    // We listen to the event coming from the `get-data` component and send the data to "data format" to format and use it as needed.
     _onChildEvent(event) {
         const data = event.detail.data;
         this.dataFormatFormsList(data)
     }
+    // It receives the data from `_onChildEvent()` and formats the data for the `get-data` component.
     dataFormatFormsList(data) {
         this.listItems = []
         this.listItems = data.map(form => {
@@ -53,7 +54,6 @@ export class FormList extends LitElement {
     }
     // This function hides the listed forms, rendering only the one we select.
     toggleShowList(form) {
-        // 1158ca47-2e5d-4d19-b586-9d43c1f915f1
         form.show = !form.show
         this.idForm = form.id
         this.singleForm = this.listItems.filter(form => form.id === this.idForm)
@@ -62,12 +62,10 @@ export class FormList extends LitElement {
                 form.show = !form.show
             }
         })
-        this.inputListValue={}
-            this.getInputsData(form.id)
-
+        this.inputListValue = {}
+        this.getInputsData(form.id)
         this.requestUpdate();
     }
-
     // We update the name and description of the listed form.
     _updateForm(formId, dataForm) {
         const updateData = {
@@ -92,7 +90,7 @@ export class FormList extends LitElement {
                 console.error('Error:', error);
             });
     }
-    // 
+    // We delete the form and all the recorded data entries from that form.
     _delete(formId) {
         const id = formId.id
         fetch(`${this.urlBase}${formId}`, {
@@ -111,8 +109,7 @@ export class FormList extends LitElement {
                 console.error('Error:', error);
             });
     }
-
-    // Capturamos los valores de los inputs dentro de la lista de formularios
+    // We capture the values of the inputs within the list of forms and format them to send them to the forms' registry.
     handleInputChange(event) {
         const name = event.target.name
         const inputId = event.target.id
@@ -124,40 +121,34 @@ export class FormList extends LitElement {
             inputType
         }
         if (this.inputListValue[name]) {
-            // Comprobar si dentro de values ya existe el valor de este input, si es asi lo sobre escribimos
-            for(let i = 0; i < this.inputListValue[name].values.length; i++){
+            // Check if the value of this input already exists within the values, and if so, we overwrite it.
+            for (let i = 0; i < this.inputListValue[name].values.length; i++) {
                 const item = this.inputListValue[name].values[i]
                 if (item.inputId === inputId) {
-                    this.inputListValue[name].values[i]=inputInfo
+                    this.inputListValue[name].values[i] = inputInfo
                     return
                 }
             }
-            // Si no existe lo empujamos dentro
+            // If it doesn't exist, we push it in.
             this.inputListValue[name].values.push(inputInfo);
-            
-            
         } else {
             this.inputListValue[name] = {
                 values: [inputInfo]
             };
         }
     };
-    handleSubmit(event){
-        event.preventDefault();  
+    // We format and send the input data to the back end.
+    handleSubmit(event) {
+        event.preventDefault();
         const formattedData = {
             id: Object.keys(this.inputListValue)[0],
             values: {}
-          };
-          
-          const valuesObject = formattedData.values;
-          
-          for (let i = 0; i < this.inputListValue[formattedData.id].values.length; i++) {
+        };
+        const valuesObject = formattedData.values;
+        for (let i = 0; i < this.inputListValue[formattedData.id].values.length; i++) {
             const valueItem = this.inputListValue[formattedData.id].values[i];
             valuesObject[i] = { ...valueItem };
-          }
-          
-          console.log(formattedData);
-
+        }
         fetch(`${this.urlBase}inputs`, {
             method: 'POST',
             headers: {
@@ -168,29 +159,27 @@ export class FormList extends LitElement {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-
+                // We send the data of the new input to the data formatting function so that it displays them in the data registry.
                 setTimeout(() => {
                     this.toggleShowList(formattedData)
-                  }, 400);
+                }, 400);
                 this.requestUpdate();
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-            this.inputListValue = []
-        }
+        this.inputListValue = []
+    }
+    // We fetch the data generated by the inputs to display them in their respective records.
     getInputsData(id) {
         fetch(`${this.urlBase}inputs/${id}`, { method: 'GET' })
             .then((response) => {
                 if (response.ok) return response.json()
                 return Promise.reject(response)
-        })
-        .then((data) => {
-            this.inputsApiData = data
-            console.log(this.inputsApiData);
-
-          
-            this.requestUpdate();
+            })
+            .then((data) => {
+                this.inputsApiData = data
+                this.requestUpdate();
             })
             .catch((error) => { console.warn('getData error in GetData.js', error); })
     }
@@ -243,7 +232,7 @@ export class FormList extends LitElement {
                             </div>
                         </div>
                         `)
-            } 
+                        } 
                         <div @click=${() => this._delete(form.id)} class="relative inline-block ">
                             <p class=" mt-5 relative z-10 flex items-center p-2 text-sm text-gray-600 cursor-pointer border border-transparent rounded-md bg-gray-700 focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none hover:bg-red-900 transition-colors duration-300 transform">
                                 <span class="mx-1 text-gray-200 hover:text-gray-200 ">Eliminar</span>
@@ -252,6 +241,7 @@ export class FormList extends LitElement {
                                 </svg>
                             </p>
                         </div>
+                        <!-- We send the property with a dot to ensure that this property stays up-to-date. -->
                         <inputs-values  .inputsData="${this.inputsApiData}"></inputs-values>
                     </form>
                 </section>

@@ -20,8 +20,7 @@ export class GetData extends LitElement {
         if (changedProperties.has("rerender")) {
             const oldValue = changedProperties.get("rerender");
             const newValue = this.rerender;
-            this.getData();
-            
+            this.getData();            
         }
         super.update(changedProperties);
     }

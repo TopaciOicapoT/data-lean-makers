@@ -59,6 +59,7 @@ export class FormDni extends LitElement {
     event.preventDefault()
     // We format the input data before storing it.
     this.formData = this.formatNewAdd
+    // We create the formData object with its necessary keys and values.
     this.formData = Object.keys(this.formatNewAdd).reduce((result, key) => {
       result[key] = {
         id: crypto.randomUUID(),
@@ -67,6 +68,7 @@ export class FormDni extends LitElement {
       }
       return result;
     }, {});
+    // We use the formatted data to create the final object that we will send to the backend.
     const newForm = {
       formname: this.formName,
       description: this.description,
@@ -81,6 +83,7 @@ export class FormDni extends LitElement {
     })
       .then((response) => response.json())
       .then((data) => {
+        // After finishing sending the data, we schedule a dispatch function after a delay to allow time for the backend to send and receive the new data, ensuring that the changes are reflected on the client.
         setTimeout(() => {
           this._dispatchItems();
         }, 1000);
@@ -88,6 +91,8 @@ export class FormDni extends LitElement {
       .catch((error) => {
         console.error('Error al enviar los datos:', error.message);
       });
+
+      // We reset the values to initiate the process again and save a new form.
     this.formName = '';
     this.description = '';
     this.formData = {};
