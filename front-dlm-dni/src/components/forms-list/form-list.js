@@ -9,11 +9,11 @@ export class FormList extends LitElement {
             idForm: { type: String },
             urlBase: { type: String },
             listItems: { type: Array },
-            inputsApiData: { type: Array },
             singleForm: { type: Array },
-            inputListValue: { type: Array },
             renderList: { type: String },
             formDataList: { type: Array },
+            inputsApiData: { type: Array },
+            inputListValue: { type: Array },
         }
     }
     static styles = css`
@@ -23,14 +23,14 @@ export class FormList extends LitElement {
     `;
     constructor() {
         super();
-        this.show = false;
         this.idForm = "";
         this.urlBase = "";
+        this.show = false;
         this.listItems = [];
         this.singleForm = [];
         this.renderList = "";
-        this.inputsApiData = [];
         this.formDataList = [];
+        this.inputsApiData = [];
         this.inputListValue = {};
     }
     // We listen to the event coming from the `get-data` component and send the data to "data format" to format and use it as needed.
@@ -193,14 +193,14 @@ export class FormList extends LitElement {
                     ${this.listItems.map(form => html`
                         <section  class="max-w-4xl mt-20 p-6 mx-auto  bg-white rounded-md shadow-md dark:bg-gray-800 animate-fade-down animate-once animate-ease-linear">
                             <div @click=${() => this.toggleShowList(form)} class="cursor-pointer text-center dark:text-gray-200">     
-                                <h2  class="flex text-center justify-center text-lg font-semibold text-gray-700 capitalize dark:text-white">          
-                                    <svg class="w-5 h-5 mx-1 "  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path class d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
-                                    </svg>
-                                        ${form.formName}
-                                    <svg class="w-5 h-5 mx-1 "  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path class d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
-                                    </svg></h2>    
+                            <h2  class="flex text-center justify-center text-lg font-semibold text-gray-700 capitalize dark:text-white">          
+                                <svg class="w-5 h-5 mx-1 "  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
+                                </svg>
+                                    ${form.formName}
+                                <svg class="w-5 h-5 mx-1 "  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
+                                </svg></h2>    
                             </div>
                     <form @submit="${this.handleSubmit}" class=${form.show ? '' : 'hidden'}>  
                         ${this.singleForm.map(form => html`
@@ -214,10 +214,10 @@ export class FormList extends LitElement {
                         </div>
                         <div @click=${() => this._updateForm(form.id, form)} class="relative inline-block animate-fade-down animate-once animate-ease-linear">
                             <p class=" mt-5 relative z-10 flex items-center p-2 text-sm text-gray-600 cursor-pointer bg-gray-700 border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none hover:bg-amber-600 transition-colors duration-300 transform">
-                                <span class="mx-1 text-gray-200 hover:text-gray-200">Actualizar</span>
-                                    <svg class="w-5 h-5 mx-1 text-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
-                                    </svg>
+                            <span class="mx-1 text-gray-200 hover:text-gray-200">Actualizar</span>
+                                <svg class="w-5 h-5 mx-1 text-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                                </svg>
                             </p>
                         </div>
                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
